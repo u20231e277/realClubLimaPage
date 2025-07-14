@@ -1,0 +1,583 @@
+/* ---------- RESET BÁSICO ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+}
+
+/* ---------- ENCABEZADO ---------- */
+header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #14274a;
+  padding: 10px;
+  width: 100%;
+}
+
+header .menu-icon {
+  position: absolute;
+  top: 50;
+  left: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+header .logo {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+/* ---------- NAVEGACIÓN LATERAL ---------- */
+nav {
+  position: fixed;
+  padding-top: 100px;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #14274a;
+  transition: all 0.3s ease-in-out;
+  overflow-x: hidden;
+  z-index: 100;
+}
+
+nav.active {
+  left: 0;
+}
+
+nav ul {
+  margin-left: 10px;
+  width: 80%;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f1f1f1;
+  width: 100%;
+  padding: 10px 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+  display: flex;
+  transition: 0.3s;
+  align-items: center;
+  gap: 10px;
+}
+
+nav a:hover {
+  color: burlywood;
+}
+
+/* icono cerrar menú */
+nav .close-icon {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  background-color: burlywood;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+nav .close-icon svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* colorear trazo del svg al hacer hover en el enlace */
+nav a:hover svg path {
+  stroke: burlywood;
+}
+
+/* ---------- CONTENIDO PRINCIPAL ---------- */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* ---------- SELECTORES DE ÁREAS Y FECHAS ---------- */
+.select-area,
+.select-dates {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* títulos de sección */
+.select-area .section-title,
+.select-dates .section-title {
+  margin-bottom: 5px;
+  color: #14274a;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* ---------- BÚSQUEDA DE ÁREA ---------- */
+.select-area .search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.select-area .search-bar input {
+  flex: 1 1 auto;
+  padding: 10px 15px;
+  border: 1px solid #e2a30e;
+  border-radius: 4px 0 0 4px;
+}
+
+.select-area .search-bar button {
+  background-color: #e2a30e;
+  color: white;
+  border: none;
+  padding: 5px 25px;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.select-area .search-bar button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.select-area .search-bar input:focus {
+  outline: none;
+}
+
+.select-area .area-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  padding-left: 15px;
+  max-height: 120px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #e2a30e transparent;
+}
+
+.select-area .area-list li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+}
+
+.select-area .area-list input {
+  display: none;
+}
+
+.select-area .area-list label {
+  display: flex;
+  align-items: center;
+}
+
+.select-area .area-list .radio-custom {
+  position: relative;
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #e2a30e;
+  border-radius: 50%;
+}
+
+.select-area .area-list input[type="radio"]:checked + .radio-custom::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #e2a30e;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- SELECTOR DE FECHAS / INVITADOS ---------- */
+.select-dates {
+  gap: 10px;
+}
+
+/* dropdowns principales (invites, fecha inicio, fecha fin) */
+.select-dates .invites .dropdown,
+.select-dates .datesStart .dropdown,
+.select-dates .datesEnd .dropdown {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 60px;
+  padding: 5px 15px;
+  border: 1px solid #aaaaaa;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+/* elementos internos de los dropdowns */
+.select-dates .invites .dropdown .message,
+.select-dates .datesStart .dropdown .message,
+.select-dates .datesEnd .dropdown .message {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 1;
+}
+
+.select-dates .invites .dropdown strong,
+.select-dates .datesStart .dropdown strong,
+.select-dates .datesEnd .dropdown strong {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.select-dates .invites .dropdown span,
+.select-dates .datesStart .dropdown span,
+.select-dates .datesEnd .dropdown span {
+  font-size: 12px;
+  color: #aaaaaa;
+}
+
+/* iconos arriba/abajo */
+.select-dates .invites .dropdown .icon-top,
+.select-dates .invites .dropdown .icon-bottom,
+.select-dates .datesStart .dropdown .icon-top,
+.select-dates .datesStart .dropdown .icon-bottom,
+.select-dates .datesEnd .dropdown .icon-top,
+.select-dates .datesEnd .dropdown .icon-bottom {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: #e2a30e;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 5px;
+  display: flex;
+}
+
+.select-dates .invites .dropdown .icon-bottom,
+.select-dates .datesStart .dropdown .icon-bottom,
+.select-dates .datesEnd .dropdown .icon-bottom {
+  display: none;
+}
+
+.select-dates .invites .dropdown .icon-top svg,
+.select-dates .invites .dropdown .icon-bottom svg,
+.select-dates .datesStart .dropdown .icon-top svg,
+.select-dates .datesStart .dropdown .icon-bottom svg,
+.select-dates .datesEnd .dropdown .icon-top svg,
+.select-dates .datesEnd .dropdown .icon-bottom svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* efecto hover en dropdown */
+.select-dates .invites .dropdown:hover,
+.select-dates .datesStart .dropdown:hover,
+.select-dates .datesEnd .dropdown:hover {
+  background-color: #f1f1f1;
+}
+
+/* calendario dentro del dropdown */
+.select-dates .invites .dropdown .calendar-container,
+.select-dates .datesStart .dropdown .calendar-container,
+.select-dates .datesEnd .dropdown .calendar-container {
+  display: none;
+  margin-top: 5px;
+  max-width: 500px;
+  z-index: 100;
+}
+
+.select-dates .invites .dropdown .calendar-container #calendar,
+.select-dates .datesStart .dropdown .calendar-container #calendar,
+.select-dates .datesEnd .dropdown .calendar-container #calendar {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #e2a30e;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* sección para invitados extra */
+.select-dates .invites .dropdown .add-invitados {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.select-dates .invites .dropdown .add-invitados label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.select-dates .invites .dropdown .add-invitados input {
+  width: 50px;
+  height: 30px;
+  border: 1px solid #e2a30e;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.select-dates .invites .dropdown .add-invitados span {
+  font-size: 14px;
+  color: #14274a;
+  font-weight: bold;
+}
+
+/* fullcalendar scrollbar */
+.fc-view-harness.fc-view-harness-active {
+  scrollbar-width: thin !important;
+  scrollbar-color: #e2a30e transparent !important;
+}
+
+/* ---------- BOTÓN DE BÚSQUEDA ---------- */
+.search-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search-container .search-button {
+  background-color: #14274a;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+}
+
+.search-container .search-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- RESULTADOS DE LA BÚSQUEDA ---------- */
+.search-container .containner-results .section-title {
+  margin-bottom: 5px;
+  color: #14274a;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-container .containner-results .section-title svg {
+  width: 24px;
+  height: 24px;
+}
+
+.search-container .containner-results .day-results {
+  margin-bottom: 20px;
+}
+
+.search-container .containner-results .time-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-container .containner-results .time-button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-container .containner-results .time-button.available {
+  background-color: #4caf50;
+  color: white;
+}
+
+.search-container .containner-results .time-button.not-available {
+  background-color: #f44336;
+  color: white;
+}
+
+/* ---------- MODAL (DIALOG) ---------- */
+dialog {
+  margin: auto;
+  padding: 15px;
+  min-width: 300px;
+  padding-top: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 0;
+  box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
+  animation: slideIn 1s ease both;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+dialog h2 {
+  margin-bottom: 10px;
+}
+
+dialog p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+dialog span {
+  font-size: 14px;
+  color: #14274a;
+  font-weight: bold;
+}
+
+dialog button {
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: 900;
+}
+
+/* dialogos de confirmación/cancelación */
+dialog#dialogConfirmation,
+dialog#dialogCancel {
+  background-color: #e2a30e;
+  color: #14274a;
+}
+
+dialog#dialogConfirmation .buttons #confirm-button,
+dialog#dialogCancel .buttons #confirm-button {
+  background-color: #fff;
+  padding: 5px 25px;
+  border: none;
+  border-radius: 5px;
+  color: #14274a;
+  font-weight: bold;
+}
+
+dialog#dialogConfirmation .buttons #cancel-button,
+dialog#dialogCancel .buttons #cancel-button {
+  background-color: #14274a;
+  padding: 5px 25px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* dialogos de error */
+dialog#dialogError,
+dialog#errorSearch,
+dialog#dialogError2,
+dialog#dialogTiempoExpirado {
+  background-color: #14274a;
+  color: #fff;
+}
+
+/* animación del modal */
+@keyframes slideIn {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ---------- LISTA DE ÁREAS (PÁGINA HOME) ---------- */
+.area-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  padding-left: 15px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.area-list li {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #e2a30e;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+
+.dot.active {
+  background-color: #14274a;
+}
+
+/* ---------- BOTÓN CONFIRMAR ---------- */
+.boton-confirmar {
+  background-color: #14274a;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.boton-confirmar:hover {
+  background-color: #1d3b70;
+}
+
+/* ---------- MATERIAL + ALTURA COMPLETA ---------- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
